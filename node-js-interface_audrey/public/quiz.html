@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TESTING DALL-E</title>
+
+    <!-- add some jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Variable for loaded Dall-e image -->
+    <!-- <script type='text/javascript'>  var loadedImage; </script> -->
+    <!-- link to main.js file -->
+    <script src="js/main.js"></script>
+    <!-- link to style.css file -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <center>
+      <h3>
+        How do algorithms see you? <br />
+        Take this quiz to find out!
+      </h3>
+
+      <div id="parentContainer">
+        <!-- question 1 -->
+        <div class="searchCrit" id="question1">
+          <p>What's your name?</p>
+          <input
+            type="text"
+            class="textInput"
+            id="nameInput"
+            value="your name ... "
+          />
+          <input type="button" value="Next" id="button1" />
+        </div>
+        <!-- question 2 -->
+        <div class="searchCrit" id="question2">
+          <p>What gender do you associate with?</p>
+          <input
+            type="text"
+            class="textInput"
+            id="genderInput"
+            value="your gender ... "
+          />
+          <input type="button" value="Next" id="button2" />
+        </div>
+        <!-- question 3 -->
+        <div class="searchCrit" id="question3">
+          <p>Which generation are you?</p>
+          <input
+            type="text"
+            class="textInput"
+            id="generationInput"
+            value="your generation ... "
+          />
+          <input type="button" value="Next" id="button3" />
+        </div>
+        <!-- question 4 -->
+        <div class="searchCrit" id="question4">
+          <p>What is your favorite hobby?</p>
+          <input
+            type="text"
+            class="textInput"
+            id="hobbyInput"
+            value="your favorite hobby ... "
+          />
+          <input type="button" value="Next" id="button4" />
+        </div>
+
+        <!-- get results button -->
+        <div class="searchCrit" id="getResDiv">
+          <input type="button" value="Get Results!" id="getRes" />
+        </div>
+
+        <!-- display result -->
+        <div class="resDalle">
+          <p>DALL-E RESULTS:</p>
+          <div id="resultsContainer"> </div>
+        </div>
+      </div>
+    </center>
+  </body>
+</html>
