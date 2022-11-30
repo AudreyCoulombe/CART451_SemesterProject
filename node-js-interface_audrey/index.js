@@ -92,6 +92,7 @@ httpServer.listen(portNumber, function () {
 
 // serving static files (files that aren't server-generated - files from the public directory) (i.e. css,js,html...)
 let static = require("node-static"); // require static node module
+const { response } = require("express");
 app.use(express.static(__dirname + "/public")); // to set the public directory as visible/usable by client (static)
 
 //make a route to XXXX page...
@@ -115,7 +116,7 @@ function handlePost(request, response) {
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://marriott-compared-purposes-gbp.trycloudflare.com";
+  let newBackendUrl= "https://win-avoid-whether-framework.trycloudflare.com";
   // ****************************************************************************
 
   // variable for the number of generated images
@@ -151,7 +152,7 @@ function handlePost(request, response) {
               // use file system (fs) to store image in image folder
               fs.writeFileSync(`public/images/${promptText}.${generatedImagesFormat}`,imagesBackFromDalleArray[i], 'base64', function(err){});
               
-              imageDataArray.push(/*new imageModel (*/{
+              imageDataArray.push(new imageModel ({
                 imgSrc:`data:image/${generatedImagesFormat};base64,${imagesBackFromDalleArray[i]}`,
                 title: "Download image",
                 downloadedFilename:`${promptText}_.${generatedImagesFormat}`
@@ -164,20 +165,14 @@ function handlePost(request, response) {
                 // title: `${promptText}`,
                 // name: "name",
                 // path: `public/images/${promptText}.${generatedImagesFormat}`,
-              }/*)*/);
+              }));
 
               // fs.writeFile(`public/images/${promptText}.${generatedImagesFormat}`,imagesBackFromDalleArray[i], 'base64', function(err){});
 
               console.log(imageDataArray[0]);
-
-              
-              
-              // imageModel.algorithmicPortraits_collection.insertOne({title: "test"});
-            // imageDataArray[0].save(); // add.then
-              // imageDataArray[0].insertOne(); // add.then
-              // imageModel.algorithmicPortraits_collection.insertOne(imageDataArray[0]);
+              imageDataArray[0].save(); // add.then
             }
-            // Send the array of images data to client ********************SEND TO Mongo DB INSTEAD?*******************************
+            // Send the array of images data 
             response.send(imageDataArray);
 
             console.log("imageDataArray:"); console.log(imageDataArray);
@@ -189,7 +184,22 @@ function handlePost(request, response) {
   }
   //just not a valid url in general...
   //response.send("nothing");
+}
 
+app.get("/getImagesData", getImgData);
 
-  
+function getImgData(request, response) {
+  db.once("open", async function () {
+    let docCount = await fitBitModel.countDocuments({});
+    let libraryData = [];
+    imageModel.find({}).then((result)=>{
+      // Add up all the values of "VeryActiveMinutes"
+      for (let i=0; i<docCount; i++) {
+        //RENDUE A AJOUTER DANS ARRAY 
+      }
+    });
+  });
+  console.log("logging");
+  // return "in get Images data function!";
+  response.send("in get Images data function!");
 }

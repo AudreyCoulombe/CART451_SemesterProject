@@ -46,9 +46,6 @@ function go() {
   }
 
   function getDalle() {
-    // Store the text input in "searchText" variable
-    // let searchText = document.getElementById("textSearch").value;
-    // console.log(searchText);
 
     let name = answer[0];
     let gender = answer[1];
