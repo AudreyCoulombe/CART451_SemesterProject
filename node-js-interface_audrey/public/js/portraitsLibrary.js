@@ -29,10 +29,10 @@ function go() {
 }
 
 function displayImages(){
-    for (let i=0; i<3; i++){
-        let portrait = $("<img>")
-        .attr("src", response[0].imgSrc)
-        .appendTo("#libraryContainer");
-    }
+    // for (let i=0; i<3; i++){
+    //     let portrait = $("<img>")
+    //     .attr("src", response[0].imgSrc)
+    //     .appendTo("#libraryContainer");
+    // }
     
 }

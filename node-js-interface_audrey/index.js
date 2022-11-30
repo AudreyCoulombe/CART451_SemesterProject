@@ -42,49 +42,6 @@ app.get("/", function (req, res) {
   res.send("<h1>Hello world</h1>");
 });
 
-// //******************************* */
-// var mongoose = require('mongoose')
-// var assert = require('assert')
-  
-// mongoose.connect('mongodb://localhost/test');
-  
-// var Schema = mongoose.Schema
-// var clubSchema = new Schema({
-//  name: String,
-//  })
-  
-//  var Club = mongoose.model('Club', clubSchema)
-  
-// // note:club = imageModel
-
-//   // Now, the interesting part:
-// data = [
-//      { 'name' : 'Barcelona' },
-//      { 'name' : 'Real Madrid' },
-//      { 'name' : 'Valencia' }
-//    ]
-//    Club.collection.insertMany(data, function(err,r) {
-//          assert.equal(null, err);
-//          assert.equal(3, r.insertedCount);
-   
-//          db.close();
-//    })
-// //******************************* */
-
-
-
-// // note:club = imageModel
-
-//   // Now, the interesting part:
-//   data = [
-//     { 'name' : 'Barcelona' },
-//     { 'name' : 'Real Madrid' },
-//     { 'name' : 'Valencia' }
-//   ]
-//   imageModel.algorithmicPortraits_collection.insert(response[0]);
-
-// //********************* */
-
 // make server listen for incoming messages
 httpServer.listen(portNumber, function () {
   console.log("listening on port:: " + portNumber);
@@ -116,7 +73,7 @@ function handlePost(request, response) {
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://win-avoid-whether-framework.trycloudflare.com";
+  let newBackendUrl= "https://people-alaska-chip-fridge.trycloudflare.com/";
   // ****************************************************************************
 
   // variable for the number of generated images
@@ -190,13 +147,16 @@ app.get("/getImagesData", getImgData);
 
 function getImgData(request, response) {
   db.once("open", async function () {
-    let docCount = await fitBitModel.countDocuments({});
+    let docCount = await imageModel.countDocuments({});
     let libraryData = [];
     imageModel.find({}).then((result)=>{
       // Add up all the values of "VeryActiveMinutes"
-      for (let i=0; i<docCount; i++) {
-        //RENDUE A AJOUTER DANS ARRAY 
-      }
+      // for (let i=0; i<docCount; i++) {
+      //   //AJOUTER DANS ARRAY 
+      // }
+
+    console.log("MONGO RESULT: ");
+    console.log(result); // TROUVER COMMENT LOG LES RESULTS POUR LES METTRE DANS RESPONSE.SEND (envoie a portrait librairy.js)
     });
   });
   console.log("logging");
