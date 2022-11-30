@@ -6,7 +6,7 @@ const imageDataSchema = new mongoose.Schema({
     imgSrc:String,
     title:String,
     downloadedFilename:String,
-    // path:String
+    username:String
 });
 
 //const imageDataModel = mongoose.model("Fitbit_collection", imageDataSchema, fitbit_collection);

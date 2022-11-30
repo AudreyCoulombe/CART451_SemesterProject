@@ -28,11 +28,13 @@ function go() {
  
 }
 
-function displayImages(){
-    // for (let i=0; i<3; i++){
-    //     let portrait = $("<img>")
-    //     .attr("src", response[0].imgSrc)
-    //     .appendTo("#libraryContainer");
-    // }
-    
+function displayImages(response){
+  console.log(response);
+    for (let i=0; i<response.length; i++){
+        let div = $("<div>").attr("id", "libraryIndividualContainer").appendTo("#libraryContainer");
+        let portrait = $("<img>").attr("src", response[i].imgSrc).appendTo(div);
+        // let portrait = $("<img>").attr("src", response[i].imgSrc).appendTo("#libraryContainer");
+    }
+
+    // <div id = "libraryIndividualContainer"></div>
 }

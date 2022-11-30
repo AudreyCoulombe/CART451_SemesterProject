@@ -21,7 +21,7 @@ function go() {
     // Store actual answer in an array
     answer[num - 1] =
       document.getElementsByClassName("textInput")[num - 1].value;
-    console.log(answer);
+    //console.log(answer);
 
     // Stop displaying actual question
     $(divID).css("display", "none");
@@ -59,7 +59,10 @@ function go() {
     $(".resDalle").css("display", "block");
 
     // assign searchText string to ClientSearch key (JSON format) and store this JSON data in mData variable
-    let mData = { clientSearch: searchText };
+    let mData = { 
+      clientSearch: searchText,
+      username: name
+     };
 
     /*** request ***/
     // Note: ajax allows to make a request without reloading the page (asynchronous request)

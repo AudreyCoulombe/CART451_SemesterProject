@@ -29,12 +29,13 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
     // connect to database
     mongoose.connect(url);
     let db = mongoose.connection;
+    let dbImages;
     db.once("open", async function () {
       console.log("connecting to DB");
       // ******************* See query assignment for ref on how to manipulate data (DBACCESS_CART451_JUST_SERVER) *********************
-      // imageModel.find({}).then((result)=>{
-      //   console.log(result);
-      // });
+      imageModel.find({}).then((result)=>{
+        dbImages = result;
+      });
     });
 
 //default route
@@ -69,11 +70,13 @@ function handlePost(request, response) {
   // Note: request is the url requested by client (/getDalleRequest)
   // assign a variable to prompt text for Dall-e
   let promptText = request.body.clientSearch;
+  let name = request.body.username;
+  console.log(name);
   console.log(promptText);
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://people-alaska-chip-fridge.trycloudflare.com/";
+  let newBackendUrl= "https://bidder-outreach-owned-tokyo.trycloudflare.com";
   // ****************************************************************************
 
   // variable for the number of generated images
@@ -111,28 +114,24 @@ function handlePost(request, response) {
               
               imageDataArray.push(new imageModel ({
                 imgSrc:`data:image/${generatedImagesFormat};base64,${imagesBackFromDalleArray[i]}`,
-                title: "Download image",
-                downloadedFilename:`${promptText}_.${generatedImagesFormat}`
-                
-                // imgSrc: `public/images/${promptText}.${generatedImagesFormat}`, 
-                // title: "Download image",
-                // downloadedFilename: `${promptText}_.${generatedImagesFormat}`, 
-                
-                
-                // title: `${promptText}`,
-                // name: "name",
-                // path: `public/images/${promptText}.${generatedImagesFormat}`,
+                title: `${promptText}`,
+                //downloadedFilename:`${promptText}_.${generatedImagesFormat}`,
+                username: `${name}`
               }));
 
               // fs.writeFile(`public/images/${promptText}.${generatedImagesFormat}`,imagesBackFromDalleArray[i], 'base64', function(err){});
 
               console.log(imageDataArray[0]);
+              
+              // save image data in Mongo database
               imageDataArray[0].save(); // add.then
+              // add new image to array with images data from Mongo db (since data was taken once db was open, before the image was generated)
+              dbImages.push(imageDataArray[0]);
             }
             // Send the array of images data 
             response.send(imageDataArray);
 
-            console.log("imageDataArray:"); console.log(imageDataArray);
+            // console.log("imageDataArray:"); console.log(imageDataArray);
           });
       } else {
         console.log("not a backendURL");
@@ -146,20 +145,6 @@ function handlePost(request, response) {
 app.get("/getImagesData", getImgData);
 
 function getImgData(request, response) {
-  db.once("open", async function () {
-    let docCount = await imageModel.countDocuments({});
-    let libraryData = [];
-    imageModel.find({}).then((result)=>{
-      // Add up all the values of "VeryActiveMinutes"
-      // for (let i=0; i<docCount; i++) {
-      //   //AJOUTER DANS ARRAY 
-      // }
-
-    console.log("MONGO RESULT: ");
-    console.log(result); // TROUVER COMMENT LOG LES RESULTS POUR LES METTRE DANS RESPONSE.SEND (envoie a portrait librairy.js)
-    });
-  });
-  console.log("logging");
-  // return "in get Images data function!";
-  response.send("in get Images data function!");
+  // console.log(dbImages);
+  response.send(dbImages);
 }
