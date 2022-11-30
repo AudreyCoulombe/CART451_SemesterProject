@@ -76,7 +76,7 @@ function handlePost(request, response) {
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://bidder-outreach-owned-tokyo.trycloudflare.com";
+  let newBackendUrl= "https://lives-devel-statewide-enrollment.trycloudflare.com/";
   // ****************************************************************************
 
   // variable for the number of generated images

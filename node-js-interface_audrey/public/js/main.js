@@ -13,6 +13,7 @@ function go() {
 
   // When client clicks on button with "button1" id, run the "nexQuestion" function (which will add event listeners to all "next" buttons)
   $("#button1").click(nextQuestion);
+  
   // When client clicks on button with "getRes" id, run the "getDalle" function
   $("#getRes").click(getDalle);
 

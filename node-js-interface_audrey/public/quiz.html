@@ -20,19 +20,32 @@
       </h3>
 
       <!-- occupation, salary, origin, gender, sex, skin color, age  -->
+      <!-- the portrait of a 30 years old canadian trans female with white skin who is a student with low income-->
+      <!-- the portrait of a poor 30 years old American mechanic male with yellow skin -->
 
       <div id="parentContainer">
         <!-- question 1 -->
         <div class="searchCrit" id="question1">
-          <p>What's your name?</p>
+          <p>Your username</p>
           <input
             type="text"
             class="textInput"
             id="nameInput"
+            onfocus="this.value=''"
             value="your name ... "
           />
           <input type="button" value="Next" id="button1" />
+          <!-- script to make as if the button is pressed when the user hits enter -->
+          <script>
+            document.getElementById("nameInput").addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("button1").click();
+              }
+            });
+            </script>
         </div>
+
         <!-- question 2 -->
         <div class="searchCrit" id="question2">
           <p>What gender do you associate with?</p>
@@ -40,10 +53,21 @@
             type="text"
             class="textInput"
             id="genderInput"
+            onfocus="this.value=''"
             value="your gender ... "
           />
           <input type="button" value="Next" id="button2" />
+          <!-- script to make as if the button is pressed when the user hits enter -->
+          <script>
+            document.getElementById("genderInput").addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("button2").click();
+              }
+            });
+            </script>
         </div>
+
         <!-- question 3 -->
         <div class="searchCrit" id="question3">
           <p>Which generation are you?</p>
@@ -51,10 +75,21 @@
             type="text"
             class="textInput"
             id="generationInput"
+            onfocus="this.value=''"
             value="your generation ... "
           />
           <input type="button" value="Next" id="button3" />
+          <!-- script to make as if the button is pressed when the user hits enter -->
+          <script>
+            document.getElementById("generationInput").addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("button3").click();
+              }
+            });
+            </script>
         </div>
+
         <!-- question 4 -->
         <div class="searchCrit" id="question4">
           <p>What is your favorite hobby?</p>
@@ -62,9 +97,19 @@
             type="text"
             class="textInput"
             id="hobbyInput"
+            onfocus="this.value=''"
             value="your favorite hobby ... "
           />
           <input type="button" value="Next" id="button4" />
+          <!-- script to make as if the button is pressed when the user hits enter -->
+          <script>
+            document.getElementById("hobbyInput").addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("button4").click();
+              }
+            });
+            </script>
         </div>
 
         <!-- get results button -->
