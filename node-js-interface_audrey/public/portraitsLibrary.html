@@ -8,16 +8,25 @@
   <script src="js/portraitsLibrary.js"></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<!-- <script type='text/javascript'>  console.log(loadedImage); </script> -->
 <body>
 <!-- <center>   -->
 <!-- display result -->
 <center>
-  <div id = "libraryContainer">
+  <div id = "libraryContainer" >
+
     <h3>Portraits library</h3>
+    <div style="width: 100%; height: 40px;">
+      <input type="button" id="filteringButton" value="Filters" class="filtersButtons" style="right:17%; width:15%"/>
+      <input type="button" id="sortingButton" value="Sort by" class="filtersButtons" style="right:7%; width:9%"/>
+      <div id="filterBox" style="width:80%; background-color: antiquewhite; display: none; position: absolute; right:5%; margin-top: 5%;">
+        <input type="button" id="submitFilters" value="Submit" class="filtersButtons" style="right:1%;"/>
+      </div>
+    </div>
+    
+    <br><br>
    
     <div id = "libraryIndividualContainer">
-      <img src="./images/The portrait of a female  millenial doing eating_.jpeg">
+      <img src=".\images\rich black male.jpeg">
       <!-- <center> -->
         <p style="font-size: 20px;">Anna</p>
       <p>The portrait of a millenial female eating food</p>
@@ -27,7 +36,7 @@
     </div>
     
     <div id = "libraryIndividualContainer">
-      <img src=".\images\The portrait of a non_binary  millenial doing art.jpg">
+      <img src=".\images\rich black male.jpeg">
       <!-- <center> -->
       <p style="font-size: 20px;">Sam</p>
       <p>The portrait of a non-binary millenial doing art</p>
@@ -47,7 +56,7 @@
     </div>
     
     <div id = "libraryIndividualContainer">
-      <img src=".\images\The portrait of a male Generation Z doing mowing the lawn_.jpeg">
+      <img src=".\images\rich black male.jpeg">
       <!-- <center> -->
       <p style="font-size: 20px;">Dan</p>
       <p>The portrait of a gen Z male mowing the lawn</p>

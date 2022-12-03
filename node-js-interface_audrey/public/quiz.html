@@ -19,9 +19,7 @@
         Take this quiz to find out!
       </h3>
 
-      <!-- occupation, salary, origin, gender, sex, skin color, age  -->
-      <!-- the portrait of a 30 years old canadian trans female with white skin who is a student with low income-->
-      <!-- the portrait of a poor 30 years old American mechanic male with yellow skin -->
+      <!-- username, age, skin color, origin, gender, occupation, income -->
 
       <div id="parentContainer">
         <!-- question 1 -->
@@ -32,7 +30,7 @@
             class="textInput"
             id="nameInput"
             onfocus="this.value=''"
-            value="your name ... "
+            value="your name... "
           />
           <input type="button" value="Next" id="button1" />
           <!-- script to make as if the button is pressed when the user hits enter -->
@@ -45,21 +43,15 @@
             });
             </script>
         </div>
-
+        
         <!-- question 2 -->
         <div class="searchCrit" id="question2">
-          <p>What gender do you associate with?</p>
-          <input
-            type="text"
-            class="textInput"
-            id="genderInput"
-            onfocus="this.value=''"
-            value="your gender ... "
-          />
+          <p>How old are you?</p>
+            <input type="number" min="1" max="120" class="textInput" id="ageInput">
           <input type="button" value="Next" id="button2" />
           <!-- script to make as if the button is pressed when the user hits enter -->
           <script>
-            document.getElementById("genderInput").addEventListener("keypress", function(event) {
+            document.getElementById("ageInput").addEventListener("keypress", function(event) {
               if (event.key === "Enter") {
                 event.preventDefault();
                 document.getElementById("button2").click();
@@ -70,18 +62,18 @@
 
         <!-- question 3 -->
         <div class="searchCrit" id="question3">
-          <p>Which generation are you?</p>
+          <p>What is the color of your skin?</p>
           <input
             type="text"
             class="textInput"
-            id="generationInput"
+            id="colorInput"
             onfocus="this.value=''"
-            value="your generation ... "
+            value="your skin color... "
           />
           <input type="button" value="Next" id="button3" />
           <!-- script to make as if the button is pressed when the user hits enter -->
           <script>
-            document.getElementById("generationInput").addEventListener("keypress", function(event) {
+            document.getElementById("colorInput").addEventListener("keypress", function(event) {
               if (event.key === "Enter") {
                 event.preventDefault();
                 document.getElementById("button3").click();
@@ -92,21 +84,88 @@
 
         <!-- question 4 -->
         <div class="searchCrit" id="question4">
+          <p>What is your country of origin?</p>
+          <p style="font-size: 20px;">(e.g. Canadian, Algerian, Indian, etc.)</p>
+          <input
+            type="text"
+            class="textInput"
+            id="originInput"
+            onfocus="this.value=''"
+            value="I was born a..."
+          />
+          <input type="button" value="Next" id="button4" />
+          <!-- script to make as if the button is pressed when the user hits enter -->
+          <script>
+            document.getElementById("originInput").addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("button4").click();
+              }
+            });
+            </script>
+        </div>
+
+        <!-- question 5 -->
+        <div class="searchCrit" id="question5">
+          <p>What gender do you associate with?</p>
+          <p style="font-size: 20px;">(e.g. woman, man, non-binary, two-spirit, transgender female, etc.)</p>
+          <input
+            type="text"
+            class="textInput"
+            id="genderInput"
+            onfocus="this.value=''"
+            value="your gender... "
+          />
+          <input type="button" value="Next" id="button5" />
+          <!-- script to make as if the button is pressed when the user hits enter -->
+          <script>
+            document.getElementById("genderInput").addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("button5").click();
+              }
+            });
+            </script>
+        </div>
+
+        <!-- question 6 -->
+        <div class="searchCrit" id="question6">
           <p>What is your favorite hobby?</p>
+          <p style="font-size: 20px;">Please, start with a gerund (i.e. verb ending in 'ing')<br>e.g. playing hockey, coding, etc.)</p>
           <input
             type="text"
             class="textInput"
             id="hobbyInput"
             onfocus="this.value=''"
-            value="your favorite hobby ... "
+            value="your hobby..."
           />
-          <input type="button" value="Next" id="button4" />
+          <input type="button" value="Next" id="button6" />
           <!-- script to make as if the button is pressed when the user hits enter -->
           <script>
             document.getElementById("hobbyInput").addEventListener("keypress", function(event) {
               if (event.key === "Enter") {
                 event.preventDefault();
-                document.getElementById("button4").click();
+                document.getElementById("button6").click();
+              }
+            });
+            </script>
+        </div>
+
+        <!-- question 7 -->
+        <div class="searchCrit" id="question7">
+          <p>How would you qualify your income?</p>
+          <select name="income" class="textInput" id="incomeInput">
+            <option value="low">low</option>
+            <option value="middle class">middle class</option>
+            <option value="high">high</option>
+          </select>
+          <input type="button" value="Next" id="button7" />
+          <!-- script to make as if the button is pressed when the user hits enter -->
+          <script>
+            document.getElementById("incomeInput").addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("button7").click();
               }
             });
             </script>

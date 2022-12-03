@@ -32,7 +32,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
     let dbImages;
     db.once("open", async function () {
       console.log("connecting to DB");
-      // ******************* See query assignment for ref on how to manipulate data (DBACCESS_CART451_JUST_SERVER) *********************
       imageModel.find({}).then((result)=>{
         dbImages = result;
       });
@@ -53,7 +52,7 @@ let static = require("node-static"); // require static node module
 const { response } = require("express");
 app.use(express.static(__dirname + "/public")); // to set the public directory as visible/usable by client (static)
 
-//make a route to XXXX page...
+//make a route to /quiz page...
 // when a get request is made from the quiz.html page...
 app.get("/quiz", function (req, res) {
   // callback function that listens to the incoming request object (req = url requested by client) and respond accordingly using  response object ()
@@ -70,13 +69,20 @@ function handlePost(request, response) {
   // Note: request is the url requested by client (/getDalleRequest)
   // assign a variable to prompt text for Dall-e
   let promptText = request.body.clientSearch;
-  let name = request.body.username;
+  let name = request.body.Username;
+  let age = request.body.Age;
+  let color = request.body.Skin_color;
+  let origin = request.body.Origin;
+  let gender = request.body.Gender;
+  let hobby = request.body.Hobby;
+  let income = request.body.Income;
+  
   console.log(name);
   console.log(promptText);
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://lives-devel-statewide-enrollment.trycloudflare.com/";
+  let newBackendUrl= "https://nobody-porter-quest-kodak.trycloudflare.com/";
   // ****************************************************************************
 
   // variable for the number of generated images
@@ -115,11 +121,14 @@ function handlePost(request, response) {
               imageDataArray.push(new imageModel ({
                 imgSrc:`data:image/${generatedImagesFormat};base64,${imagesBackFromDalleArray[i]}`,
                 title: `${promptText}`,
-                //downloadedFilename:`${promptText}_.${generatedImagesFormat}`,
-                username: `${name}`
+                Username: `${name}`,
+                Age: `${age}`,
+                Skin_color: `${color}`,
+                Origin: `${origin}`,
+                Gender: `${gender}`,
+                Hobby: `${hobby}`,
+                Income: `${income}`
               }));
-
-              // fs.writeFile(`public/images/${promptText}.${generatedImagesFormat}`,imagesBackFromDalleArray[i], 'base64', function(err){});
 
               console.log(imageDataArray[0]);
               
@@ -131,7 +140,7 @@ function handlePost(request, response) {
             // Send the array of images data 
             response.send(imageDataArray);
 
-            // console.log("imageDataArray:"); console.log(imageDataArray);
+            console.log("imageDataArray:"); console.log(imageDataArray);
           });
       } else {
         console.log("not a backendURL");
@@ -145,6 +154,11 @@ function handlePost(request, response) {
 app.get("/getImagesData", getImgData);
 
 function getImgData(request, response) {
-  // console.log(dbImages);
   response.send(dbImages);
 }
+
+// app.get("/getFilterOptions", getFltrOptions);
+
+// function getFltrOptions(){
+//   db
+// }

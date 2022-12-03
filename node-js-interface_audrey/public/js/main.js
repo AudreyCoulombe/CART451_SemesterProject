@@ -8,7 +8,7 @@ function go() {
   // Find the ID of the button
   let num = 1;
   let divID = "#question1";
-  let numberOfQuestions = 4;
+  let numberOfQuestions = 7;
   let answer = new Array();
 
   // When client clicks on button with "button1" id, run the "nexQuestion" function (which will add event listeners to all "next" buttons)
@@ -17,12 +17,11 @@ function go() {
   // When client clicks on button with "getRes" id, run the "getDalle" function
   $("#getRes").click(getDalle);
 
-  //
+  // 
   function nextQuestion() {
     // Store actual answer in an array
-    answer[num - 1] =
-      document.getElementsByClassName("textInput")[num - 1].value;
-    //console.log(answer);
+    answer[num - 1] = document.getElementsByClassName("textInput")[num - 1].value;
+    console.log(answer);
 
     // Stop displaying actual question
     $(divID).css("display", "none");
@@ -47,13 +46,17 @@ function go() {
   }
 
   function getDalle() {
-
     let name = answer[0];
-    let gender = answer[1];
-    let generation = answer[2];
-    let hobby = answer[3];
+    let age = answer[1];
+    let color = answer[2];
+    let origin = answer[3];
+    let gender = answer[4];
+    let hobby = answer[5];
+    let income = answer[6];
 
-    let searchText = "The portrait of a " + gender + " " + generation + " doing " + hobby;
+    // The portrait of a 26 years old white female from Canada with low income who is doing bonsai
+    // let searchText = "A " + age + " years old " + color + " " + gender + " from " + origin + " who is a " + occupation + " with " + income + " income";
+    let searchText = "The portrait of a " + age + " years old " + color + " " + origin + " " + gender + " with " + income + " income" + " who is " + hobby;
     console.log(searchText);
 
     $("#getResDiv").css("display", "none");
@@ -62,7 +65,13 @@ function go() {
     // assign searchText string to ClientSearch key (JSON format) and store this JSON data in mData variable
     let mData = { 
       clientSearch: searchText,
-      username: name
+      Username: name,
+      Age: age,
+      Skin_color: color,
+      Origin: origin,
+      Gender: gender,
+      Hobby: hobby,
+      Income: income
      };
 
     /*** request ***/
@@ -77,8 +86,8 @@ function go() {
       timeout: 600000,
       success: function (response) {
         //reponse is a STRING
-        // console.log(response);
-        parseResponse(response);
+        console.log(response);
+        displayImage(response);
         // loadButtons(response);
       },
       error: function (e) {
@@ -90,41 +99,26 @@ function go() {
 }
 
 // display image
-function parseResponse(response) {
+function displayImage(response) {
   $("#resultsContainer").empty();
   let portrait = $("<img>")
     .attr("src", response[0].imgSrc)
     .appendTo("#resultsContainer");
+  loadButtons();
+}
 
-  // Add button to take quiz again
-  let lineBreak = $("<br>").appendTo("#resultsContainer");
+function loadButtons(){
+    // Add button to take quiz again
+  let lineBreak = $("<br><br>").appendTo("#resultsContainer");
   let $retry = $('<input type="button" value="Take quiz again" />');
   $retry.appendTo("#resultsContainer");
   $retry.click(function () {
     window.location.href = "quiz.html";
   });
   // Add button to view portraits library
-  let $libraryButton = $(
-    '<input type="button" value="Go to portraits library" />'
-  );
+  let $libraryButton = $('<input type="button" value="Go to portraits library" />');
   $libraryButton.appendTo("#resultsContainer");
   $libraryButton.click(function () {
     window.location.href = "portraitsLibrary.html";
   });
-  
 }
-
-// function loadButtons(response){
-//     // Add button to take quiz again
-//     let $retry = $('<input type="button" value="Take quiz again" />');
-//     $retry.appendTo("#resultsContainer");
-//     $retry.click(function(){
-//       window.location.href = 'quiz.html';
-//     });
-//     // Add button to view portraits library
-//     let $libraryButton = $('<input type="button" value="Go to portraits library" />');
-//     $libraryButton.appendTo("#resultsContainer");
-//     $libraryButton.click(function(){
-//       window.location.href = 'portraitsLibrary.html';
-//     });
-// }

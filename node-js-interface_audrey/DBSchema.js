@@ -5,10 +5,15 @@ const mongoose = require('mongoose');
 const imageDataSchema = new mongoose.Schema({
     imgSrc:String,
     title:String,
-    downloadedFilename:String,
-    username:String
+    Username:String,
+    Age:String,
+    Skin_color:String,
+    Origin:String,
+    Gender:String,
+    Hobby:String,
+    Income:String
 });
 
 //const imageDataModel = mongoose.model("Fitbit_collection", imageDataSchema, fitbit_collection);
-const imageDataModel = mongoose.model("AlgorithmicPortraits_collection", imageDataSchema, "algorithmicPortraits_collection");
+const imageDataModel = mongoose.model("AlgorithmicPortraits_collectionV2", imageDataSchema, "algorithmicPortraits_collection");
 module.exports = imageDataModel;

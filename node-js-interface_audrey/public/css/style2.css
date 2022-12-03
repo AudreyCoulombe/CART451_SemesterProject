@@ -1,0 +1,122 @@
+body {
+    font-family: "Roboto", sans-serif;
+  }
+  h3 {
+    /* margin-left:35%; */
+    margin-top: 3vh;
+    color: #000000;
+    font-size: 40px;
+  }
+  
+  #parentContainer {
+    width: 100%;
+    background: #eeeeee;
+    /* margin-top:2%; */
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .searchCrit {
+    background: #91e3f8;
+    /* border: 1px solid  #ebadd6; */
+    width: 100%;
+    padding: 10%;
+    height: min-content;
+    display: none;
+  }
+  .searchCrit p {
+    color: #020138;
+    font-size: 40px;
+  }
+  
+  #question1 {
+    display: block;
+  }
+  
+  /* .resCrit p {
+    color:#ffffff;
+    font-size:18px;
+  }
+  .resCrit{
+    background:#8f246b;
+    padding:1%;
+    border: 1px solid  #ebadd6;
+    width:40%;
+    margin-left:2%;
+  } */
+  /* 
+  #resultsContainer{
+    background:#ebebfa;
+  } */
+  
+  input[type="text"] {
+    display: block;
+    width: 250px;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  
+  input[type="button"] {
+    font-size: 20px;
+  }
+  
+  /* for res page */
+  /* #parentContainerRes{
+     margin-left:15%;
+     background:#b82e8a;
+    margin-right:15%;
+   }
+   .searchCritRange{
+     background:rgba(0,0,0,0.5);
+     padding:5px;
+     color:white;
+     padding-left:15%;
+   }
+    .resCritRes{
+     padding-left:15%;
+   }
+   #resultsContainerPos{
+     background:#ebebfa;
+     opacity:.5;
+     width:85%;
+     padding:1%;
+     border-bottom: 15px solid  #b82e8a;
+   } */
+  
+  .resDalle {
+    background: #91e3f8;
+    width: 45%;
+    margin-left: 2%;
+    padding-left: 2%;
+    display: none;
+  }
+  .resDalle p {
+    color: #020138;
+    font-size: 40px;
+  }
+  
+  #libraryContainer div {
+    width: 20%;
+    height: 20%;
+    background-color: #9a99cc;
+    padding: 10px;
+    padding-top: 10px;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 2%;
+  }
+  #libraryContainer img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* #getResPos{
+     display:inline-block;
+     margin-left:50px;
+   } */
+  
+  /* input[type='number']{
+     display:inline-block;
+     margin-left:5px;
+   } */
