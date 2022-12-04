@@ -35,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
       imageModel.find({}).then((result)=>{
         dbImages = result;
       });
+      app.post("/getFilteredImages", getFilteredImages);
     });
 
 //default route
@@ -66,6 +67,7 @@ app.post("/getDalleRequest", handlePost); // handlePost = custom callback functi
 
 // callback function when a post reques is made with getDalleRequest url (has express built in req and res arguments)
 function handlePost(request, response) {
+
   // Note: request is the url requested by client (/getDalleRequest)
   // assign a variable to prompt text for Dall-e
   let promptText = request.body.clientSearch;
@@ -82,7 +84,7 @@ function handlePost(request, response) {
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://nobody-porter-quest-kodak.trycloudflare.com/";
+  let newBackendUrl= "https://any-clicks-keno-exceptional.trycloudflare.com/";
   // ****************************************************************************
 
   // variable for the number of generated images
@@ -156,6 +158,44 @@ app.get("/getImagesData", getImgData);
 function getImgData(request, response) {
   response.send(dbImages);
 }
+
+function getFilteredImages(request, response){
+  
+  let Ages = request.body.ages;
+  let Colors = request.body.colors;
+  let Origins = request.body.origins;
+  let Genders = request.body.genders;
+  let Hobbies = request.body.hobbies;
+  let Incomes = request.body.incomes;
+  
+  let filteredImages = [];
+
+  for (let i=0; i<Ages.length; i++) {
+    imageModel.find({Age: Ages[i]}).then((result)=>{
+      // result.find()
+      for (let j=0; j<result.length; j++) {
+        filteredImages.push(result[j]);
+        console.log(result[j]);
+      }
+    }); 
+  }
+  setTimeout(function(){ //Question: how to know the optimized timeout? (I guess it depends on the number of requested images?)
+    let filteredImages = imagesData.filter(function (el) {
+      // return el.Age == "26";
+  
+      return el.Age == "26"  || el.Age == "41";
+      // return el.Age == "26"  && el.Origin == "Canadian";
+      // && el.Hobby == "skiing"
+    });
+  },4000);
+  // setTimeout(function(){ //Question: how to know the optimized timeout? (I guess it depends on the number of requested images?)
+    console.log(filteredImages);
+    response.send(filteredImages);
+  // },4000);
+}
+
+
+
 
 // app.get("/getFilterOptions", getFltrOptions);
 
