@@ -86,7 +86,7 @@ function go() {
       timeout: 600000,
       success: function (response) {
         //reponse is a STRING
-        console.log(response);
+        // console.log(response);
         displayImage(response);
         // loadButtons(response);
       },

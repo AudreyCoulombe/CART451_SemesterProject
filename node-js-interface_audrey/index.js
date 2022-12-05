@@ -84,7 +84,7 @@ function handlePost(request, response) {
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://any-clicks-keno-exceptional.trycloudflare.com/";
+  let newBackendUrl= "https://assured-dollar-chronicle-full.trycloudflare.com/";
   // ****************************************************************************
 
   // variable for the number of generated images
@@ -161,44 +161,50 @@ function getImgData(request, response) {
 
 function getFilteredImages(request, response){
   
-  let Ages = request.body.ages;
-  let Colors = request.body.colors;
-  let Origins = request.body.origins;
-  let Genders = request.body.genders;
-  let Hobbies = request.body.hobbies;
-  let Incomes = request.body.incomes;
+  let Age = request.body.age;
+  let Color = request.body.color;
+  let Origin = request.body.origin;
+  let Gender = request.body.gender;
+  let Hobby = request.body.hobby;
+  let Income = request.body.income;
+  // console.log(Age);
+  // console.log(request.body);
+  // console.log(request);
   
   let filteredImages = [];
 
-  for (let i=0; i<Ages.length; i++) {
-    imageModel.find({Age: Ages[i]}).then((result)=>{
-      // result.find()
-      for (let j=0; j<result.length; j++) {
-        filteredImages.push(result[j]);
-        console.log(result[j]);
-      }
-    }); 
+
+  let keys = Object.keys(request.body);
+  let values = Object.values(request.body);
+  console.log(keys); // [ 'age', 'color', 'origin', 'gender', 'hobby', 'income' ]
+  console.log(values); // [ '26', 'Any', 'Any', 'woman', 'Any', 'Any' ]
+
+  for (let i=0; i<values.length; i++) {
+    if (values[i] != 'Any') {
+
+    }
   }
-  setTimeout(function(){ //Question: how to know the optimized timeout? (I guess it depends on the number of requested images?)
-    let filteredImages = imagesData.filter(function (el) {
-      // return el.Age == "26";
-  
-      return el.Age == "26"  || el.Age == "41";
-      // return el.Age == "26"  && el.Origin == "Canadian";
-      // && el.Hobby == "skiing"
-    });
-  },4000);
+
+  // // for (let i=0; i<Ages.length; i++) {
+  //   imageModel.find({Age: Ages[i]}).then((result)=>{
+  //     // result.find()
+  //     for (let j=0; j<result.length; j++) {
+  //       filteredImages.push(result[j]);
+  //       console.log(result[j]);
+  //     }
+  //   }); 
+  // // }
   // setTimeout(function(){ //Question: how to know the optimized timeout? (I guess it depends on the number of requested images?)
-    console.log(filteredImages);
-    response.send(filteredImages);
+  //   let filteredImages = imagesData.filter(function (el) {
+  //     // return el.Age == "26";
+  
+  //     return el.Age == "26"  || el.Age == "41";
+  //     // return el.Age == "26"  && el.Origin == "Canadian";
+  //     // && el.Hobby == "skiing"
+  //   });
   // },4000);
+  // // setTimeout(function(){ //Question: how to know the optimized timeout? (I guess it depends on the number of requested images?)
+  //   console.log(filteredImages);
+  //   response.send(filteredImages);
+  // // },4000);
 }
-
-
-
-
-// app.get("/getFilterOptions", getFltrOptions);
-
-// function getFltrOptions(){
-//   db
-// }

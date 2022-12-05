@@ -10,26 +10,17 @@ $(document).ready(go);
 
 function go() {
 
-  $("#filteringButton").click(showFilters);
-  $("#submitFilters").click(getSelectedFilters);
-  
-
-   // assign searchText string to ClientSearch key (JSON format) and store this JSON data in mData variable
-  // let imgData = { clientSearch: searchText };
+  // $("#filteringButton").click(showFilters);
+  $("#filteringButton").click(getSelectedFilters);
 
    /*** request ***/
    // Note: ajax allows to make a request without reloading the page (asynchronous request)
    $.ajax({
      type: "GET",
-     //data: JSON.stringify(imgData),
      url: "/getImagesData",
-     //processData: false,
-     //contentType: "application/json",
-     //cache: false,
      timeout: 600000,
      success: function (response) {
-       //parseResponse(response);
-      //  console.log(response);
+      imagesData=response;
        displayImages(response);
        getFilterOptions(response);
      },
@@ -41,24 +32,63 @@ function go() {
  
 }
 
-function showFilters() {
-  // Show/hide the filter box
-  if (document.getElementById("filterBox").style.display !== "none") {
-    document.getElementById("filterBox").style.display = "none";
-  } else {
-    document.getElementById("filterBox").style.display = "block";
-  }
-}
-
 function displayImages(response){
-  imagesData=response;
   console.log(response);
   console.log(imagesData);
-
     for (let i=0; i<response.length; i++){
         let div = $("<div>").attr("class", "libraryIndividualContainer").appendTo("#libraryContainer");
+
+        let tooltipDiv = $("<div>").attr("class", "tooltip").appendTo(div);
+        let reportButton = $('<input />', {type: 'image', src:'./images/reportIcon.png', class:'reportButton'}).appendTo(tooltipDiv);
+        $(reportButton).click(function(){
+            console.log("report button clicked");
+        });
+        let tooltipText = $("<span>Report a visible bias</span>").attr("class", "tooltiptext").appendTo(tooltipDiv);
         let portrait = $("<img>").attr("src", response[i].imgSrc).appendTo(div);
+        let name = $(`<p>${response[i].Username}</p>`).attr("style", "font-size:20px; text-align:center;").appendTo(div);
+        let desciption = $(`<p>${response[i].title}</p>`).appendTo(div);
+        
+        // let reportButton = $('<input />', {type: 'image', src:'./images/flagIcon.png'}).appendTo(div);
+        // $(reportButton).click(function(){
+        //     console.log("button clicked");
+        // });
+
+        // <div class = "libraryIndividualContainer">
+        //   <div class="tooltip">
+        //     <input type="image" src="./images/reportIcon.png" class="reportButton"/>
+        //     <span class="tooltiptext">Report a visible bias</span>
+        //   </div>
+        //   <img src=".\images\rich black male.jpeg" style="position:relative">
+        //   <p style="font-size: 20px; text-align:center">Anna</p>
+        //   <p>The portrait of a millenial female eating food</p>
+        // </div>
+
     }
+
+
+    
+    // <input type="image" src="https://www.freepngimg.com/thumb/submit_button/25497-9-submit-button-photos.png" name="submit" width="100" height="48" alt="submit"/>
+
+    
+        // $(wordButton).click(function(){
+        // // $(`#${possibilityKeys[j]}`).click(function(){
+        //   console.log("button clicked");
+        //   // wordButton.style.color = "red";
+        //   $(this).css("color", "red");
+        //   $(this).css("font-size", "x-large");
+        //   $(this).css("transform", "translateX(-3%)");
+        //   wordPrediction(possibilityKeys[j]);
+        // });
+
+    // <div class = "libraryIndividualContainer">
+    //   <img src=".\images\rich black male.jpeg">
+    //     <p style="font-size: 20px;">Anna</p>
+    //   <p>The portrait of a millenial female eating food</p>
+    //   <p style="display: inline;">Report a visible bias</p>
+    //   <img style="width:30px; display: inline;" src="./images/flagIcon.png">
+    // </div>
+
+
 }
 
 function getFilterOptions(response){
@@ -70,7 +100,7 @@ function getFilterOptions(response){
   let incomeOptions = [];
 
   response.forEach(function getDiffOptions(item,index) {
-  /***************************** Get Age Options ******************************/
+/***************************** Get Age Options ******************************/
     let ageOptionsIndex = 0;
     let sameAgeOption = "false";
     // Check if the age is already in the ageOptions array
@@ -88,11 +118,9 @@ function getFilterOptions(response){
           let uniqueAgeOption = item.Age;
           ageOptions.push(uniqueAgeOption);
 
-          // Create and append a checkbox and a label for this unique age option
-          let ageColumn = document.getElementById("ageFilter");
-          $('<input />', { type: 'checkbox', class: 'ages', value: uniqueAgeOption }).appendTo(ageColumn);
-          $('<label />', { text: uniqueAgeOption }).appendTo(ageColumn);
-          $("<br>").appendTo(ageColumn);
+          // Create a new select option for this unique age option
+          ageSelect =  document.getElementById('ageSelect');
+          ageSelect.options[ageSelect.options.length] = new Option(uniqueAgeOption, uniqueAgeOption);
     }
     
   /***************************** Get Color Options ******************************/
@@ -112,11 +140,9 @@ function getFilterOptions(response){
       let uniqueColorOption = item.Skin_color;
       colorOptions.push(uniqueColorOption);
 
-      // Create and append a checkbox and a label for this unique color option
-      let colorColumn = document.getElementById("colorFilter");
-      $('<input />', { type: 'checkbox', class: 'colors', value: uniqueColorOption }).appendTo(colorColumn);
-      $('<label />', { text: uniqueColorOption }).appendTo(colorColumn);
-      $("<br>").appendTo(colorColumn);
+      // Create a new select option for this unique color option
+      colorSelect =  document.getElementById('colorSelect');
+      colorSelect.options[colorSelect.options.length] = new Option(uniqueColorOption, uniqueColorOption);
     }
 
   /***************************** Get Origin Options ******************************/
@@ -137,11 +163,9 @@ function getFilterOptions(response){
       let uniqueOriginOption = item.Origin;
       originOptions.push(uniqueOriginOption);
 
-      // Create and append a checkbox and a label for this unique origin option
-      let originColumn = document.getElementById("originFilter");
-      $('<input />', { type: 'checkbox', class: 'origins', value: uniqueOriginOption }).appendTo(originColumn);
-      $('<label />', { text: uniqueOriginOption }).appendTo(originColumn);
-      $("<br>").appendTo(originColumn);
+      // Create a new select option for this unique origin option
+      originSelect =  document.getElementById('originSelect');
+      originSelect.options[originSelect.options.length] = new Option(uniqueOriginOption, uniqueOriginOption);
     }
 
   /***************************** Get Gender Options ******************************/
@@ -162,11 +186,9 @@ function getFilterOptions(response){
       let uniqueGenderOption = item.Gender;
       genderOptions.push(uniqueGenderOption);
 
-      // Create and append a checkbox and a label for this unique gender option
-      let genderColumn = document.getElementById("genderFilter");
-      $('<input />', { type: 'checkbox', class: 'genders', value: uniqueGenderOption }).appendTo(genderColumn);
-      $('<label />', { text: uniqueGenderOption }).appendTo(genderColumn);
-      $("<br>").appendTo(genderColumn);
+      // Create a new select option for this unique gender option
+      genderSelect =  document.getElementById('genderSelect');
+      genderSelect.options[genderSelect.options.length] = new Option(uniqueGenderOption, uniqueGenderOption);
     }
 
   /***************************** Get Hobby Options ******************************/
@@ -187,11 +209,9 @@ function getFilterOptions(response){
       let uniqueHobbyOption = item.Hobby;
       hobbyOptions.push(uniqueHobbyOption);
 
-      // Create and append a checkbox and a label for this unique hobby option
-      let hobbyColumn = document.getElementById("hobbyFilter");
-      $('<input />', { type: 'checkbox', class: 'hobbies', value: uniqueHobbyOption }).appendTo(hobbyColumn);
-      $('<label />', { text: uniqueHobbyOption }).appendTo(hobbyColumn);
-      $("<br>").appendTo(hobbyColumn);
+      // Create a new select option for this unique hobby option
+      hobbySelect =  document.getElementById('hobbySelect');
+      hobbySelect.options[hobbySelect.options.length] = new Option(uniqueHobbyOption, uniqueHobbyOption);
     }
 
   /***************************** Get Income Options ******************************/
@@ -212,159 +232,107 @@ function getFilterOptions(response){
       let uniqueIncomeOption = item.Income;
       incomeOptions.push(uniqueIncomeOption);
 
-      // Create and append a checkbox and a label for this unique income option
-      let incomeColumn = document.getElementById("incomeFilter");
-      $('<input />', { type: 'checkbox', class: 'incomes', value: uniqueIncomeOption }).appendTo(incomeColumn);
-      $('<label />', { text: uniqueIncomeOption }).appendTo(incomeColumn);
-      $("<br>").appendTo(incomeColumn);
+      // Create a new select option for this unique income option
+      incomeSelect =  document.getElementById('incomeSelect');
+      incomeSelect.options[incomeSelect.options.length] = new Option(uniqueIncomeOption, uniqueIncomeOption);
     }
     
   });
-  console.log(ageOptions);
-  console.log(colorOptions);
-  console.log(originOptions);
-  console.log(genderOptions);
-  console.log(hobbyOptions);
-  console.log(incomeOptions);
+  // console.log(ageOptions);
+  // console.log(colorOptions);
+  // console.log(originOptions);
+  // console.log(genderOptions);
+  // console.log(hobbyOptions);
+  // console.log(incomeOptions);
 }
-
-
-
 
 function getSelectedFilters(){
-/***************************** Get Selected Age Filters ******************************/
-  // Array with the ages selected by the user
-  let selectedAges = []; 
-  // Array with all age checkbox elements
-  let agesCheckboxes = document.getElementsByClassName('ages');
-  // for every age checkbox, look if it is checked and if so, add its value to the selectedAges array
-  for(var i=0; i < agesCheckboxes.length; ++i){
-    if(agesCheckboxes[i].checked){
-      selectedAges.push(agesCheckboxes[i].value);
-    }
-  }
-  console.log(selectedAges);
+  
+  let selectedAge = $("#ageSelect").find("option:selected").text();
+  let selectedColor = $("#colorSelect").find("option:selected").text();
+  let selectedOrigin = $("#originSelect").find("option:selected").text();
+  let selectedGender = $("#genderSelect").find("option:selected").text();
+  let selectedHobby = $("#hobbySelect").find("option:selected").text();
+  let selectedIncome = $("#incomeSelect").find("option:selected").text();
 
-/***************************** Get Selected Skin Color Filters ******************************/
-  // Array with the colors selected by the user
-  let selectedColors = []; 
-  // Array with all color checkbox elements
-  let colorsCheckboxes = document.getElementsByClassName('colors');
-  // for every color checkbox, look if it is checked and if so, add its value to the selectedColors array
-  for(var i=0; i < colorsCheckboxes.length; ++i){
-    if(colorsCheckboxes[i].checked){
-      selectedColors.push(colorsCheckboxes[i].value);
-    }
-  }
-  console.log(selectedColors);
-
-/***************************** Get Selected Origin Filters ******************************/
-  // Array with the origins selected by the user
-  let selectedOrigins = []; 
-  // Array with all origin checkbox elements
-  let originsCheckboxes = document.getElementsByClassName('origins');
-  // for every origin checkbox, look if it is checked and if so, add its value to the selectedOrigins array
-  for(var i=0; i < originsCheckboxes.length; ++i){
-    if(originsCheckboxes[i].checked){
-      selectedOrigins.push(originsCheckboxes[i].value);
-    }
-  }
-  console.log(selectedOrigins);
-
-/***************************** Get Selected Gender Filters ******************************/
-  // Array with the genders selected by the user
-  let selectedGenders = []; 
-  // Array with all gender checkbox elements
-  let gendersCheckboxes = document.getElementsByClassName('genders');
-  // for every gender checkbox, look if it is checked and if so, add its value to the selectedGenders array
-  for(var i=0; i < gendersCheckboxes.length; ++i){
-    if(gendersCheckboxes[i].checked){
-      selectedGenders.push(gendersCheckboxes[i].value);
-    }
-  }
-  console.log(selectedGenders);
-
-/***************************** Get Selected Hobby Filters ******************************/
-  // Array with the hobbies selected by the user
-  let selectedHobbies = []; 
-  // Array with all hobby checkbox elements
-  let hobbiesCheckboxes = document.getElementsByClassName('hobbies');
-  // for every hobby checkbox, look if it is checked and if so, add its value to the selectedHobbies array
-  for(var i=0; i < hobbiesCheckboxes.length; ++i){
-    if(hobbiesCheckboxes[i].checked){
-      selectedHobbies.push(hobbiesCheckboxes[i].value);
-    }
-  }
-  console.log(selectedHobbies);
-
-/***************************** Get Selected Income Filters ******************************/
-  // Array with the incomes selected by the user
-  let selectedIncomes = []; 
-  // Array with all income checkbox elements
-  let incomesCheckboxes = document.getElementsByClassName('incomes');
-  // for every income checkbox, look if it is checked and if so, add its value to the selectedIncomes array
-  for(var i=0; i < incomesCheckboxes.length; ++i){
-    if(incomesCheckboxes[i].checked){
-      selectedIncomes.push(incomesCheckboxes[i].value);
-    }
-  }
-  console.log(selectedIncomes);
-  getFilteredImages(selectedAges, selectedColors, selectedOrigins, selectedGenders, selectedHobbies, selectedIncomes);
-// /***************************** Display images with selected filter options ******************************/
-//   $("#libraryContainer").empty();
-//   let filteredImages = [];
-//   // console.log(imagesData[0].Age);
-//   for(let imgIndex=0; imgIndex<imagesData.length; imgIndex++) {
-//     for(let selectionIndex=0; selectionIndex<selectedAges.length; selectionIndex++){
-//       if (selectedAges.length > 0 && imagesData[imgIndex].Age == selectedAges[selectionIndex]){
-
-//       }
-//     }
-//   }
-}
+  // let filterData = {
+  //   age: selectedAge, 
+  //   color: selectedColor, 
+  //   origin: selectedOrigin, 
+  //   gender: selectedGender, 
+  //   hobby: selectedHobby, 
+  //   income: selectedIncome
+  //  };
 
 
-function getFilteredImages (selectedAges, selectedColors, selectedOrigins, selectedGenders, selectedHobbies, selectedIncomes) {
-  /***************************** Display images with selected filter options ******************************/
+
+  //  let keys = Object.keys(request.body);
+  //  let values = Object.values(request.body);
   $("#libraryContainer").empty();
-  // console.log(imagesData);
+  // console.log(response);
+  
+  let ageFilteredImages = []; // ageImgs
+  let colorFilteredImages = []; // ageColImgs
+  let originFilteredImages = []; // ageColOriImgs
+  let genderFilteredImages = []; // ageColOriGenImgs
+  let hobbyFilteredImages = []; // ageColOriGenHobImgs
+  let incomeFilteredImages = []; //filteredImages
 
-  // let filteredImages = imagesData.filter(function (el) {
-  //   // return el.Age == "26";
-
-  //   return el.Age == "26"  || el.Age == "41";
-  //   // return el.Age == "26"  && el.Origin == "Canadian";
-  //   // && el.Hobby == "skiing"
-  // });
-
-  // console.log(filteredImages);
-
-  // assign searchText string to ClientSearch key (JSON format) and store this JSON data in mData variable
-  let filterData = {
-    ages: selectedAges, 
-    colors: selectedColors, 
-    origins: selectedOrigins, 
-    genders: selectedGenders, 
-    hobbies: selectedHobbies, 
-    incomes: selectedIncomes
-   };
-
-  // /*** request ***/
-  // // Note: ajax allows to make a request without reloading the page (asynchronous request)
-  $.ajax({
-    type: "POST",
-    data: JSON.stringify(filterData),
-    url: "/getFilteredImages",
-    processData: false,
-    contentType: "application/json",
-    cache: false,
-    timeout: 600000,
-    success: function (response) {
-      console.log(response);
-    },
-    error: function (e) {
-      console.log(e);
-      console.log("error occurred");
-    },
-  });
+  // Create an array of images data with AGE filter applied
+  for (let i=0; i < imagesData.length; i++) {
+    if (selectedAge != 'Any' && imagesData[i].Age == selectedAge) {
+      ageFilteredImages.push(imagesData[i]);
+    } 
+    else if (selectedAge == 'Any'){
+      ageFilteredImages.push(imagesData[i]);
+    }
+  }
+  // Create an array of images data with AGE and COLOR filters applied
+  for (let i=0; i < ageFilteredImages.length; i++) {
+    if (selectedColor != 'Any' && ageFilteredImages[i].Skin_color == selectedColor) {
+      colorFilteredImages.push(ageFilteredImages[i]);
+    }
+    else if (selectedColor == 'Any'){
+      colorFilteredImages.push(ageFilteredImages[i]);
+    }
+  }
+  // Create an array of images data with AGE, COLOR and ORIGIN filters applied
+  for (let i=0; i < colorFilteredImages.length; i++) {
+    if (selectedOrigin != 'Any' && colorFilteredImages[i].Origin == selectedOrigin) {
+      originFilteredImages.push(colorFilteredImages[i]);
+    }
+    else if (selectedOrigin == 'Any'){
+      originFilteredImages.push(colorFilteredImages[i]);
+    }
+  }
+  // Create an array of images data with AGE, COLOR, ORIGIN and GENDER filters applied
+  for (let i=0; i < originFilteredImages.length; i++) {
+    if (selectedGender != 'Any' && originFilteredImages[i].Gender == selectedGender) {
+      genderFilteredImages.push(originFilteredImages[i]);
+    }
+    else if (selectedGender == 'Any'){
+      genderFilteredImages.push(originFilteredImages[i]);
+    }
+  }
+  // Create an array of images data with AGE, COLOR, ORIGIN, GENDER and HOBBY filters applied
+  for (let i=0; i < genderFilteredImages.length; i++) {
+    if (selectedHobby != 'Any' && genderFilteredImages[i].Hobby == selectedHobby) {
+      hobbyFilteredImages.push(genderFilteredImages[i]);
+    }
+    else if (selectedHobby == 'Any'){
+      hobbyFilteredImages.push(genderFilteredImages[i]);
+    }
+  }
+  // Create an array of images data with ALL FILTERS applied (AGE, COLOR, ORIGIN, GENDER, HOBBY and INCOME)
+  for (let i=0; i < hobbyFilteredImages.length; i++) {
+    if (selectedIncome != 'Any' && hobbyFilteredImages[i].Income == selectedIncome) {
+      incomeFilteredImages.push(hobbyFilteredImages[i]);
+    }
+    else if (selectedIncome == 'Any'){
+      incomeFilteredImages.push(hobbyFilteredImages[i]);
+    }
+  }
+  console.log(incomeFilteredImages);
+  
+  displayImages(incomeFilteredImages);
 }

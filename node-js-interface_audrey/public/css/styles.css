@@ -5,6 +5,7 @@ h3 {
   margin-top: 3vh;
   color: #545454;
   font-size: 40px;
+  /* position:fixed; */
 }
 
 #parentContainer {
@@ -13,10 +14,12 @@ h3 {
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
+  border: 1px solid #3f3f3f;
 }
 
 .searchCrit {
-  background: #91e3f8;
+  /* background: #91e3f8; */
+  border: 1px solid #3f3f3f;
   /* border: 1px solid  #ebadd6; */
   width: 100%;
   padding: 10%;
@@ -44,7 +47,8 @@ input[type="button"] {
 }
 
 .resDalle {
-  background: #91e3f8;
+  /* background: #91e3f8; */
+  border: 1px solid #3f3f3f;
   width: 45%;
   margin-left: 2%;
   padding-left: 2%;
@@ -53,6 +57,12 @@ input[type="button"] {
 .resDalle p {
   color: #020138;
   font-size: 40px;
+  border: 1px solid #3f3f3f;
+}
+#libraryContainer {
+  margin-top: 200px;
+  position: absolute;
+  z-index: -1;
 }
 
 #libraryContainer div {
@@ -61,9 +71,10 @@ input[type="button"] {
   /* background-color: #9a99cc; */
   padding: 10px;
   padding-top: 10px;
-  margin: 5px;
+  /* margin: 5px; */
   display: inline-block;
   border-radius: 2%;
+  /* border: 1px solid #3f3f3f; */
 }
 #libraryContainer img {
   width: 100%;
@@ -72,25 +83,32 @@ input[type="button"] {
 
 .libraryIndividualContainer {
   width: 20%;
-  height: 20%;
+  /* height: 20%; */
   text-align: left;
+  border: 1px solid #a1a1a1;
+  /* box-shadow: #3f3f3f; */
+  box-shadow: 6px 3px #aaaaaa;
+  /* box-shadow: 6px 3px #ff8b1e; */
+  /* background-color: #e58c343b; */
+  position: relative;
+  margin: 10px 10px;
 }
 
 .libraryIndividualContainer p {
+  position: static;
   margin: 0px 0px;
   padding-top: 5px;
   padding-left: 5px;
-  /* position:relative; */
-  /* z-index: -10; */
+  /* border: 1px solid #3f3f3f; */
 }
 
 .filtersButtons {
-  position: absolute; 
+  /* position: absolute;  */
   /* right: 7%;  */
   display:inline-block;
   /* width:15%;  */
   color: #4e4e4e; 
-  border: 2px solid #a7a7a7; 
+  /* border: 2px solid #a7a7a7;  */
   border-radius:12px; 
   background-color: white; 
   padding: 10px 10px;  
@@ -120,17 +138,22 @@ input[type="button"] {
 .filterColumn {
   position: static;
   width: 12%;
-  padding: 0px 0px;
+  padding: 0px 10px;
   margin: 0px 0px;
   float:left;
+  /* border: 1px solid #3f3f3f; */
+  /* top: -10px; */
   /* background-color: #a7a7a7; */
   /* height: auto; */
 }
 .filterColumn p {
   font-weight: bold;
+  /* border: 1px solid #3f3f3f; */
+  margin: 0px 0px;
+  padding: 0px 0px;
 }
 
-.filterColumn input {
+/* .filterColumn input {
   display: block;
   float: left;
   position:absolute;
@@ -140,4 +163,38 @@ input[type="button"] {
   float: left;
   position:relative;
   left: 25px;
+} */
+
+.filterSelect {
+  width:100%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  top: 0px;
+  left:200px;
+  /* border-bottom: 1px dotted black; */
+  z-index: 1;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 2;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.reportButton{
+  width: 80px;
 }

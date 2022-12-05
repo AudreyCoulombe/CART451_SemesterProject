@@ -12,83 +12,56 @@
 <!-- <center>   -->
 <!-- display result -->
 <center>
-  <div id = "libraryContainer" >
-
-    <h3>Portraits library</h3>
-    <div style="width: 100%; height: 40px;">
-      <input type="button" id="filteringButton" value="Filters" class="filtersButtons" style="right:17%; width:15%"/>
-      <input type="button" id="sortingButton" value="Sort by" class="filtersButtons" style="right:7%; width:9%"/>
-      <div id="filterBox" style="width:90%; background-color: antiquewhite; display: none; position: absolute; right:5%; margin-top: 5%;">
+  
+<div style="width:100vw; background-color: white; position:fixed; height: fit-content; padding:0px 0px; margin:0px 0px; top:0px;">
+    <h3 style="text-shadow: 4px 3px #aaaaaa;;">Portraits library</h3>
+    <div style=" height: 60px; top:80px; margin: 0px 0px; padding: 0px 0px;">
+      <!-- <input type="button" id="filteringButton" value="Apply Filters" class="filtersButtons" style="right:7%; width:15%"/> -->
+      <!-- <input type="button" id="sortingButton" value="Sort by" class="filtersButtons" style="right:7%; width:9%"/> -->
         <div class="filterColumn" id="ageFilter">
           <p>Age</p>
+          <select name="ageSelect" class="filterSelect" id="ageSelect">
+            <option value="any" class="any">Any</option>
+          </select>
         </div>
         <div class="filterColumn" id="colorFilter">
           <p>Skin color</p>
+          <select name="colorSelect" class="filterSelect" id="colorSelect">
+            <option value="any" class="any">Any</option>
+          </select>
         </div>
         <div class="filterColumn" id="originFilter">
           <p>Origin</p>
+          <select name="originSelect" class="filterSelect" id="originSelect">
+            <option value="any" class="any">Any</option>
+          </select>
         </div>
         <div class="filterColumn" id="genderFilter">
           <p>Gender</p>
+          <select name="genderSelect" class="filterSelect" id="genderSelect">
+            <option value="any" class="any">Any</option>
+          </select>
         </div>
         <div class="filterColumn" id="hobbyFilter">
           <p>Hobby</p>
+          <select name="hobbySelect" class="filterSelect" id="hobbySelect">
+            <option value="any" class="any">Any</option>
+          </select>
         </div>
         <div class="filterColumn" id="incomeFilter">
           <p>Income</p>
-          <!-- <input type="checkbox" onclick="myFunction()" value="Value">
-          <label for="myCheck">Checkbox</label>  -->
+          <select name="incomeSelect" class="filterSelect" id="incomeSelect">
+            <option value="any" class="any">Any</option>
+          </select>
         </div>
-
-
-        <input type="button" id="submitFilters" value="Submit" class="filtersButtons" style="right:1%;"/>
-      </div>
+        <!-- <input type="button" id="submitFilters" value="Submit" class="filtersButtons" style="right:1%;"/> -->
+      <!-- </div> -->
+      <input type="button" id="filteringButton" value="Apply Filters" class="filtersButtons" style="width:15%; float: left;"/>
     </div>
-    
-    <br><br>
-   
-    <div class = "libraryIndividualContainer">
-      <img src=".\images\rich black male.jpeg">
-      <!-- <center> -->
-        <p style="font-size: 20px;">Anna</p>
-      <p>The portrait of a millenial female eating food</p>
-      <p style="display: inline;">Report a visible bias</p>
-      <img style="width:30px; display: inline;" src="./images/flagIcon.png">
-      <!-- </center> -->
-    </div>
-    
-    <div class = "libraryIndividualContainer">
-      <img src=".\images\rich black male.jpeg">
-      <!-- <center> -->
-      <p style="font-size: 20px;">Sam</p>
-      <p>The portrait of a non-binary millenial doing art</p>
-      <p style="display: inline;">Report a visible bias</p>
-      <img style="width:30px; display: inline;" src="./images/flagIcon.png">
-      <!-- </center> -->
-    </div>
-    
-    <div class = "libraryIndividualContainer">
-      <img src=".\images\rich black male.jpeg">
-      <!-- <center> -->
-      <p style="font-size: 20px;">Nathan</p>
-      <p>The portrait of a black guy making business</p>
-      <p style="display: inline;">Report a visible bias</p>
-      <img style="width:30px; display: inline;" src="./images/flagIcon.png">
-      <!-- </center> -->
-    </div>
-    
-    <div class = "libraryIndividualContainer">
-      <img src=".\images\rich black male.jpeg">
-      <!-- <center> -->
-      <p style="font-size: 20px;">Dan</p>
-      <p>The portrait of a gen Z male mowing the lawn</p>
-      <p style="display: inline;">Report a visible bias</p>
-      <img style="width:30px; display: inline;" src="./images/flagIcon.png">
-      <!-- </center> -->
-    </div>
-
-    
   </div>
+
+
+  <div id = "libraryContainer" > </div>
 </center>
 
   
