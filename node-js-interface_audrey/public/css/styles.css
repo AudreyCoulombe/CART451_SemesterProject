@@ -10,25 +10,83 @@ h3 {
 
 #parentContainer {
   width: 100%;
-  background: #eeeeee;
+  /* background: white; */
   padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid #3f3f3f;
+  margin-top: 200px;
+  /* display: flex;
+  flex-wrap: wrap; */
+  /* height: fit-content; */
+  height: auto;
+  position: absolute;
+  /* border: 1px solid #3f3f3f; */
+}
+
+#parentContainer img {
+  width: 100%;
+  height: 100%;
+}
+
+#parentContainer  input[type="button"] {
+  display:inline-block;
+  color: #4e4e4e; 
+  border-radius:12px; 
+  background-color: white; 
+  padding: 10px 10px;  
+  cursor: pointer;
+  /* height: 35px; */
+  /* margin-top: 5px; */
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+#parentContainer  input[type="button"]:hover {
+  background-color: #a7a7a7;
+  /* color: white; */
+}
+
+.menuButtons {
+  display:inline-block;
+  color: #4e4e4e; 
+  border-radius:12px; 
+  background-color: white; 
+  padding: 10px 10px;  
+  cursor: pointer;
+  /* height: 35px; */
+  /* margin-top: 5px; */
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.menuButtons:hover {
+  background-color: #a7a7a7;
+  /* color: white; */
 }
 
 .searchCrit {
-  /* background: #91e3f8; */
-  border: 1px solid #3f3f3f;
-  /* border: 1px solid  #ebadd6; */
-  width: 100%;
-  padding: 10%;
+  background: #f1ff34;
+  /* border: 1px solid #3f3f3f; */
+  /* border: 1px solid  #aaaaaa; */
+  width: 40%;
+  padding: 10% 10%;
+  /* margin: 20% 20%; */
   height: min-content;
   display: none;
+  box-shadow: 10px 10px #aaaaaa;;
+}
+
+.searchCrit  input[type="button"] {
+  font-size: 20px;
+  margin-top: 10px;
+  display: block;
 }
 .searchCrit p {
-  color: #020138;
-  font-size: 40px;
+  color: #656565;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 #question1 {
@@ -42,46 +100,49 @@ input[type="text"] {
   font-size: 20px;
 }
 
-input[type="button"] {
+/* input[type="button"] {
   font-size: 20px;
-}
+} */
 
 .resDalle {
   /* background: #91e3f8; */
-  border: 1px solid #3f3f3f;
-  width: 45%;
-  margin-left: 2%;
-  padding-left: 2%;
+  /* border: 1px solid #3f3f3f; */
+  /* width: 50%;
+  margin-left: 25%;
+  padding-right: 25%; */
+  /* background: #f1ff34; */
+  /* background: #f1ff34; */
   display: none;
+  margin-top: 0px;
+  width:100vw;
+  /* height:fit-content; */
 }
+
 .resDalle p {
-  color: #020138;
-  font-size: 40px;
-  border: 1px solid #3f3f3f;
+  color: #404040;
+  font-size: 30px;
+  font-weight: bold;
 }
+/* .resDalle img {
+  width:60%
+} */
+
 #libraryContainer {
   margin-top: 200px;
   position: absolute;
-  z-index: -1;
+  background-color: #f1ff34;
+  /* background-color: #ffffffaf; */
 }
 
-#libraryContainer div {
-  /* width: 20%;
-  height: 20%; */
-  /* background-color: #9a99cc; */
-  padding: 10px;
-  padding-top: 10px;
-  /* margin: 5px; */
-  display: inline-block;
-  border-radius: 2%;
-  /* border: 1px solid #3f3f3f; */
-}
 #libraryContainer img {
   width: 100%;
   height: 100%;
 }
 
 .libraryIndividualContainer {
+  padding: 10px;
+  padding-top: 10px;
+  border-radius: 2%;
   width: 20%;
   /* height: 20%; */
   text-align: left;
@@ -89,9 +150,10 @@ input[type="button"] {
   /* box-shadow: #3f3f3f; */
   box-shadow: 6px 3px #aaaaaa;
   /* box-shadow: 6px 3px #ff8b1e; */
-  /* background-color: #e58c343b; */
+  background-color: white;
   position: relative;
   margin: 10px 10px;
+  display: inline-block;
 }
 
 .libraryIndividualContainer p {
@@ -99,20 +161,19 @@ input[type="button"] {
   margin: 0px 0px;
   padding-top: 5px;
   padding-left: 5px;
+  font-size: 12px;
   /* border: 1px solid #3f3f3f; */
 }
 
 .filtersButtons {
-  /* position: absolute;  */
-  /* right: 7%;  */
   display:inline-block;
-  /* width:15%;  */
   color: #4e4e4e; 
-  /* border: 2px solid #a7a7a7;  */
   border-radius:12px; 
   background-color: white; 
   padding: 10px 10px;  
   cursor: pointer;
+  height: 35px;
+  margin-top: 5px;
 }
 
 .filtersButtons:hover {
@@ -173,9 +234,9 @@ input[type="button"] {
   position: relative;
   display: inline-block;
   top: 0px;
-  left:200px;
+  left:0px;
   /* border-bottom: 1px dotted black; */
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .tooltip .tooltiptext {
@@ -186,15 +247,291 @@ input[type="button"] {
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-
-  /* Position the tooltip */
   position: absolute;
-  z-index: 2;
+  z-index: 10;
 }
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+
+
+
 .reportButton{
-  width: 80px;
+  width: 60px;
+}
+
+#reportDiv{
+  display:none; 
+  width:90%; 
+  border: 1px solid #3f3f3f;
+}
+
+#reportDiv textarea {
+  font-size: 13px;
+  width:95%;
+  /* wrap */
+  resize: vertical;
+  height:20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#reportDiv label {
+  font-size: 15px;
+}
+
+
+.reportedBiasses{
+  border: 1px solid #3f3f3f;
+  /* height: */
+  width:auto;
+  /* float:left; */
+  display: inline-block;
+}
+
+
+
+
+/* flagTooltip container */
+.flagTooltip {
+  position: relative;
+  display: inline-block;
+  /* border: 1px solid #3f3f3f; */
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+#resultsContainer {
+  position: absolute;
+  /* background: #f1ff34; */
+  width: 100%;
+}
+
+#resultsContainer img {
+  width: 100%;
+  height: 100%;
+}
+
+/* flagTooltip text */
+.flagTooltip .flagTooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the flagTooltip text - see examples below! */
+  position: absolute;
+  z-index: 10;
+}
+
+/* Show the flagTooltip text when you mouse over the flagTooltip container */
+.flagTooltip:hover .flagTooltiptext {
+  visibility: visible;
+}
+
+#incomeInput{
+  font-size: 40px;
+  display: block;
+    width: 250px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#ageInput{
+  font-size: 40px;
+  display: block;
+    width: 150px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.textInput{
+  color: #404040;
+}
+
+#descriptionModif{
+  font-size: 16px;
+  font-weight: lighter;
+  display: inline-block;
+  color: #404040;
+  width:100%;
+  padding: 7px;
+  background-color: #ffffff;;
+}
+
+#bodyId{
+  background-color: white;
+}
+
+#comparisonDiv{
+  width: 80%; 
+  display:none;
+  background-color: #4e4e4e; 
+  /* position: absolute; 
+  top: 160px; */
+  margin-top: 10px;
+  margin-left: 5%; 
+  padding-right: 5%; 
+  padding-left: 5%; 
+  border-radius: 15px; 
+  padding-top: 15px; 
+  padding-bottom: 20px;
+}
+
+.getRes{
+  /* display:inline-block; */
+  color: #4e4e4e; 
+  border-radius:5px; 
+  background-color: white; 
+  padding: 10px 10px;  
+  cursor: pointer;
+  /* height: 35px; */
+  /* margin-top: 5px; */
+  padding-left: 10px;
+  padding-right: 10px;
+  /* margin-right: 20px;
+  margin-left: 20px; */
+}
+.resultMenuItems{
+    /* position: static;
+    width: auto;
+    padding: 0px 10px;
+    margin: 0px 0px;
+    float:left; */
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+/************************ LOADING SPINNER BY MattIn4D ***********************/
+/************************ https://codepen.io/MattIn4D/pen/DOOGBo ***********************/
+
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: visible;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display:none;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

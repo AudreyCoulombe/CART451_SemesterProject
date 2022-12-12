@@ -11,7 +11,9 @@ const imageDataSchema = new mongoose.Schema({
     Origin:String,
     Gender:String,
     Hobby:String,
-    Income:String
+    Income:String,
+    Biases:String,
+    BiasesKeywords:Array
 });
 
 //const imageDataModel = mongoose.model("Fitbit_collection", imageDataSchema, fitbit_collection);

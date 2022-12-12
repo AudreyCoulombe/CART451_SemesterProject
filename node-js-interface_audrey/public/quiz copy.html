@@ -14,36 +14,19 @@
     <!-- link to style.css file -->
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body id="bodyId">
+  <body>
     <center>
-
-    <div style="width:100vw; background: linear-gradient(#fffffff4, #fffffff4, #fffffff4, #fffffff4, #fffffff4,#fffffff4,#fffffff4,#fffffff4,#fffffff4,#fffffff4, #ffffff00); position:fixed; height: fit-content; padding:0px 0px; padding-bottom: 15px; margin:0px 0px; top:0px; left: 0px; z-index: 30;">
-    
       <h3 id="pageTitle" style="text-shadow: 4px 3px #aaaaaa;">
         How do algorithms see you? <br />
         Take this quiz to find out!
       </h3>
       <div class="resDalle">
-
-        <div class="resultMenuItems">
-          <input type="button" value="Take quiz again" id="retry" class="menuButtons">
-        </div>
-        <div class="resultMenuItems">
-          <input type="button" value="Go to portraits library" id="portraitsLib" class="menuButtons">
-        </div>
-        <div class="resultMenuItems">
-          <input type="button" value="Compare results" id="compare" class="menuButtons">
-        </div>
-        <br>
-        <div id="comparisonDiv">
-          <p style="font-size: 16px; font-weight: lighter; color:#c2c2c2;">* Tip: Try changing one feature at a time to better understand the various stereotypes associated with it. You can also remove some parameters to see the AI's assumptions.</p>
-          <input type="text" id="descriptionModif"/>
-          <input type="button" value="Generate a new image" id="compareRes" class="getRes" style="font-size: 13px; padding: 4px 4px;"/>
-        </div>
-
-        
+        <input type="button" value="Take quiz again" id="retry">
+        <input type="button" value="Go to portraits library" id="portraitsLib">
+        <p style="font-size: 14px; font-weight: lighter;">* Tip: Try changing one feature at a time to better understand the various stereotypes associated with it. You can also remove some parameters to see the AI's assumptions.</p>
+        <input type="text" id="descriptionModif"/>
+        <input type="button" value="Compare Results!" id="compareRes" class="getRes" style="font-size: 14px; padding: 4px 4px;"/>
       </div>
-    </div>
 
       <!-- username, age, skin color, origin, gender, occupation, income -->
 

@@ -1,16 +1,9 @@
 let imagesData = [];
-// let ageOptions = [];
-// let colorOptions = [];
-// let originOptions = [];
-// let genderOptions = [];
-// let hobbyOptions = [];
-// let incomeOptions = [];
 
 $(document).ready(go);
 
 function go() {
 
-  // $("#filteringButton").click(showFilters);
   $("#filteringButton").click(getSelectedFilters);
 
    /*** request ***/
@@ -22,6 +15,7 @@ function go() {
      success: function (response) {
       imagesData=response;
        displayImages(response);
+      //  processBiasData(response);
        getFilterOptions(response);
      },
      error: function (e) {
@@ -29,67 +23,103 @@ function go() {
        console.log("error occurred");
      },
    });
- 
 }
 
 function displayImages(response){
   console.log(response);
   console.log(imagesData);
     for (let i=0; i<response.length; i++){
+      
+        // Create library main container
         let div = $("<div>").attr("class", "libraryIndividualContainer").appendTo("#libraryContainer");
 
+        // report button and tooltip
         let tooltipDiv = $("<div>").attr("class", "tooltip").appendTo(div);
         let reportButton = $('<input />', {type: 'image', src:'./images/reportIcon.png', class:'reportButton'}).appendTo(tooltipDiv);
-        $(reportButton).click(function(){
-            console.log("report button clicked");
-        });
         let tooltipText = $("<span>Report a visible bias</span>").attr("class", "tooltiptext").appendTo(tooltipDiv);
+
+        let inputFlagDiv = $("<div>", {class: 'flagTooltip', style:"padding-left:5px"}).appendTo(div);
+        // reported bias
+        for (let j=0; j < processBiasData(response[i]).length; j++) {
+          let flagsDiv =$("<div>", {class: 'flagTooltip', style:"padding-left:5px"}).appendTo(div);
+          let flagImg = $("<img />", {class: 'flagTooltip', src:"./images/flagIcon.png", style:"width:15px; display: inline;"}).appendTo(flagsDiv);
+          let biasText = $(`<span>${processBiasData(response[i])[j]}</span>`).attr("class", "flagTooltiptext").appendTo(flagsDiv);
+        }
+        
+        // report inputs
+        let reportDiv = $("<div>").attr("id", "reportDiv").appendTo(div);
+        let descriptionLabel = $("<label>Description</label>").appendTo(reportDiv);
+        let descriptionTextArea = $('<textarea required/>', {id: 'biasDescription', placeholder:'Describe reported bias'}).appendTo(reportDiv);
+        let keywordsLabel = $("<label>Keywords</label>").appendTo(reportDiv);
+        let keywordsTextArea = $('<textarea required/>', {id: 'biasKeywords', placeholder:'Enter keywords'}).appendTo(reportDiv);
+        let sendReportBtn = $("<button>Send</button>", {type: 'button', id:'submitBias'}).appendTo(reportDiv);
+        sendReportBtn.click(function(){
+          reportBias(response[i],descriptionTextArea.val(), keywordsTextArea.val(), inputFlagDiv);
+          $(reportDiv).css({"display":"none"});
+          $(descriptionTextArea).val("");
+          $(keywordsTextArea).val("");
+        });
+        let cancelBtn = $("<button>Cancel</button>", {type: 'button', id:'cancelButton'}).appendTo(reportDiv);
+        cancelBtn.click(function(){
+          $(reportDiv).css({"display":"none"});
+          $(descriptionTextArea).val("");
+          $(keywordsTextArea).val("");
+        });
+
+        // show/hide reportDiv when reportButton is clicked
+        $(reportButton).click(function(){ 
+          if ($(reportDiv).css("display")=="block"){
+            $(reportDiv).css({"display":"none"});
+          }
+          else if ($(reportDiv).css("display")=="none"){
+            $(reportDiv).css({"display":"block"});
+          }
+        });
+
+        // image and information
         let portrait = $("<img>").attr("src", response[i].imgSrc).appendTo(div);
         let name = $(`<p>${response[i].Username}</p>`).attr("style", "font-size:20px; text-align:center;").appendTo(div);
         let desciption = $(`<p>${response[i].title}</p>`).appendTo(div);
-        
-        // let reportButton = $('<input />', {type: 'image', src:'./images/flagIcon.png'}).appendTo(div);
-        // $(reportButton).click(function(){
-        //     console.log("button clicked");
-        // });
-
-        // <div class = "libraryIndividualContainer">
-        //   <div class="tooltip">
-        //     <input type="image" src="./images/reportIcon.png" class="reportButton"/>
-        //     <span class="tooltiptext">Report a visible bias</span>
-        //   </div>
-        //   <img src=".\images\rich black male.jpeg" style="position:relative">
-        //   <p style="font-size: 20px; text-align:center">Anna</p>
-        //   <p>The portrait of a millenial female eating food</p>
-        // </div>
-
     }
-
-
-    
-    // <input type="image" src="https://www.freepngimg.com/thumb/submit_button/25497-9-submit-button-photos.png" name="submit" width="100" height="48" alt="submit"/>
-
-    
-        // $(wordButton).click(function(){
-        // // $(`#${possibilityKeys[j]}`).click(function(){
-        //   console.log("button clicked");
-        //   // wordButton.style.color = "red";
-        //   $(this).css("color", "red");
-        //   $(this).css("font-size", "x-large");
-        //   $(this).css("transform", "translateX(-3%)");
-        //   wordPrediction(possibilityKeys[j]);
-        // });
-
-    // <div class = "libraryIndividualContainer">
-    //   <img src=".\images\rich black male.jpeg">
-    //     <p style="font-size: 20px;">Anna</p>
-    //   <p>The portrait of a millenial female eating food</p>
-    //   <p style="display: inline;">Report a visible bias</p>
-    //   <img style="width:30px; display: inline;" src="./images/flagIcon.png">
-    // </div>
-
-
 }
+
+function reportBias(biasedImg, biasDescription, biasKeywords, div){
+  let newImgData;
+  console.log("in report bias function" + biasedImg.Username);
+  // get an array of keywords by splitting it with hashtags and/or comas and/or spaces
+  let splittedKeywords = biasKeywords.split(/[#, ]+/);
+  console.log(splittedKeywords);
+  let biasData = {
+    img: biasedImg,
+    description: biasDescription,
+    keywords: splittedKeywords
+  };
+
+  // /*** request ***/
+  // // Note: ajax allows to make a request without reloading the page (asynchronous request)
+  $.ajax({
+    type: "POST",
+    data: JSON.stringify(biasData),
+    url: "/reportBias",
+    processData: false,
+    contentType: "application/json",
+    cache: false,
+    timeout: 600000,
+    success: function (response) {
+      newImgData = response;
+      console.log(response);
+
+    },
+    error: function (e) {
+      console.log(e);
+      console.log("error occurred");
+    },
+  });
+
+  let flagImg = $("<img />", {class: 'flagTooltip', src:"./images/flagIcon.png", style:"width:15px; display: inline;"}).appendTo(div);
+  let biasText = $(`<span>${biasDescription}</span>`).attr("class", "flagTooltiptext").appendTo(div);
+}
+
 
 function getFilterOptions(response){
   let ageOptions = [];
@@ -238,12 +268,6 @@ function getFilterOptions(response){
     }
     
   });
-  // console.log(ageOptions);
-  // console.log(colorOptions);
-  // console.log(originOptions);
-  // console.log(genderOptions);
-  // console.log(hobbyOptions);
-  // console.log(incomeOptions);
 }
 
 function getSelectedFilters(){
@@ -255,19 +279,6 @@ function getSelectedFilters(){
   let selectedHobby = $("#hobbySelect").find("option:selected").text();
   let selectedIncome = $("#incomeSelect").find("option:selected").text();
 
-  // let filterData = {
-  //   age: selectedAge, 
-  //   color: selectedColor, 
-  //   origin: selectedOrigin, 
-  //   gender: selectedGender, 
-  //   hobby: selectedHobby, 
-  //   income: selectedIncome
-  //  };
-
-
-
-  //  let keys = Object.keys(request.body);
-  //  let values = Object.values(request.body);
   $("#libraryContainer").empty();
   // console.log(response);
   
@@ -335,4 +346,14 @@ function getSelectedFilters(){
   console.log(incomeFilteredImages);
   
   displayImages(incomeFilteredImages);
+}
+
+
+function processBiasData(imgData){
+  let imgBias = [];
+  if (typeof imgData.Biases != 'undefined') {
+    imgBias = imgData.Biases.split((/[;]+/));
+    // console.log(imgBias);
+  }
+  return imgBias;
 }

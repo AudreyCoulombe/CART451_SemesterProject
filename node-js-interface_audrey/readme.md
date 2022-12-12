@@ -6,5 +6,5 @@ To make it work:
 
 - run node index.js
 
-- go to http://localhost:4200/quiz.html
+- go to http://localhost:4210/quiz.html
 

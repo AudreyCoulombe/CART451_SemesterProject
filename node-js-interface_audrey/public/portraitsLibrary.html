@@ -5,19 +5,17 @@
   <title> Portraits Library </title>
   <!-- add some jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="js/portraitsLibrary.js"></script>
+  <script src="js/portraitsLibrary_2.js"></script>
+  <script src="js/Portraits.js"></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-<!-- <center>   -->
-<!-- display result -->
+
+<body style="background-color: #f1ff34;">
 <center>
   
-<div style="width:100vw; background-color: white; position:fixed; height: fit-content; padding:0px 0px; margin:0px 0px; top:0px;">
-    <h3 style="text-shadow: 4px 3px #aaaaaa;;">Portraits library</h3>
+<div style="width:100vw; background: linear-gradient(#fffffff4, #fffffff4, #fffffff4, #fffffff4, #fffffff4,#fffffff4,#fffffff4,#fffffff4,#fffffff4,#fffffff4, #ffffff00); position:fixed; height: fit-content; padding:0px 0px; margin:0px 0px; top:0px; left: 0px; z-index: 30;">
+    <h3 style="text-shadow: 4px 3px #aaaaaa;">Portraits library</h3>
     <div style=" height: 60px; top:80px; margin: 0px 0px; padding: 0px 0px;">
-      <!-- <input type="button" id="filteringButton" value="Apply Filters" class="filtersButtons" style="right:7%; width:15%"/> -->
-      <!-- <input type="button" id="sortingButton" value="Sort by" class="filtersButtons" style="right:7%; width:9%"/> -->
         <div class="filterColumn" id="ageFilter">
           <p>Age</p>
           <select name="ageSelect" class="filterSelect" id="ageSelect">
@@ -54,18 +52,38 @@
             <option value="any" class="any">Any</option>
           </select>
         </div>
-        <!-- <input type="button" id="submitFilters" value="Submit" class="filtersButtons" style="right:1%;"/> -->
-      <!-- </div> -->
       <input type="button" id="filteringButton" value="Apply Filters" class="filtersButtons" style="width:15%; float: left;"/>
     </div>
   </div>
 
 
-  <div id = "libraryContainer" > </div>
+  <div id = "libraryContainer" >
+
+    <!-- <div class = "libraryIndividualContainer">
+      <input type="image" src="./images/reportIcon.png" class="reportButton" onclick="openForm()" />
+      
+      <div class="flagTooltip">
+        <img class="flagTooltip" style="width:20px; display: inline;" src="./images/flagIcon.png">
+        <span class="flagTooltiptext">flagTooltip text</span>
+      </div>
+      
+      <div id="reportDiv"> 
+          <label>Description</label>
+          <textarea id="biasDescription" placeholder="Describe reported bias" required></textarea>
+          <label>Keywords</label>
+          <textarea id="biasKeywords" placeholder="Enter keywords" required></textarea>
+          <button type="submit" id="submitBias">Send</button>
+          <button type="button" id="cancelButton">Cancel</button>
+      </div>
+      <img src=".\images\rich black male.jpeg">
+        <p style="font-size: 20px;">Anna</p>
+      <p>The portrait of a millenial female eating food</p>
+      <p style="display: inline;">Report a visible bias</p>
+      <img style="width:30px; display: inline;" src="./images/flagIcon.png">
+    </div> -->
+
+  </div>
 </center>
-
-  
-
 
 <!-- </center> -->
 </body>
