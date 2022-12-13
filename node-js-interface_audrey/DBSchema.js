@@ -12,10 +12,10 @@ const imageDataSchema = new mongoose.Schema({
     Gender:String,
     Hobby:String,
     Income:String,
-    Biases:String,
+    Biases:Array,
     BiasesKeywords:Array
 });
 
 //const imageDataModel = mongoose.model("Fitbit_collection", imageDataSchema, fitbit_collection);
-const imageDataModel = mongoose.model("AlgorithmicPortraits_collectionV2", imageDataSchema, "algorithmicPortraits_collection");
+const imageDataModel = mongoose.model("AlgorithmicPortraits_collectionV3", imageDataSchema, "algorithmicPortraits_collectionV3");
 module.exports = imageDataModel;

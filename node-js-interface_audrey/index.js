@@ -32,8 +32,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
     let dbImages;
     db.once("open", async function () {
       console.log("connecting to DB");
+      
       imageModel.find({}).then((result)=>{
-        dbImages = result;
+        dbImages = result;        
       });
       // app.post("/getFilteredImages", getFilteredImages);
       app.post("/reportBias", biasReport);
@@ -85,7 +86,7 @@ function handlePost(request, response) {
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://gmbh-lucky-mexican-reality.trycloudflare.com/";
+  let newBackendUrl= "https://starting-married-lender-leon.trycloudflare.com/";
   // ****************************************************************************
 
   // variable for the number of generated images
@@ -125,7 +126,9 @@ function handlePost(request, response) {
                 Origin: `${origin}`,
                 Gender: `${gender}`,
                 Hobby: `${hobby}`,
-                Income: `${income}`
+                Income: `${income}`,
+                Biases: [],
+                BiasesKeywords: []
               }));
               
               // save image data in Mongo database
@@ -154,7 +157,11 @@ function getImgData(request, response) {
 async function biasReport (request, response){
   let biasedImg = request.body.img;
   let biasDescription = request.body.description;
+  // let biasDescription = [];
   let biasKeywords = [];
+
+
+  // biasDescription.push(request.body.description);
 
   for (let i=0; i<request.body.keywords.length; i++){
     biasKeywords.push(request.body.keywords[i]);
@@ -164,17 +171,23 @@ async function biasReport (request, response){
 
   imageModel.findOne(filter).then((result)=>{
     console.log(result);
-    let updatedBiases;
-    console.log(result.Biases);
-    if (result.Biases === "undefined"){ //HOW TO KNOW IF UNDEFINED???
-      updatedBiases = `${biasDescription}`;
-    } else {
-      console.log("no set biases");
 
-      console.log("biases not undefined");
-      updatedBiases = `${result.Biases}; `.concat(`${biasDescription}`);
-    }
+    let updatedBiases = result.Biases;
+    // for (let i=0; i<biasKeywords.length; i++){
+      updatedBiases.push(biasDescription);
+    // }
+    // let updatedBiases;
+    // console.log(result.Biases);
+    // if (result.Biases === "undefined"){ //HOW TO KNOW IF UNDEFINED??? + HOW TO DELETE ALL BIASES IN DB?
+    //   updatedBiases = `${biasDescription}`;
+    // } else {
+    //   console.log("no set biases");
+
+    //   console.log("biases not undefined");
+    //   updatedBiases = `${result.Biases}; `.concat(`${biasDescription}`);
+    // }
     console.log(updatedBiases);
+
     let updatedBiasKeywords = result.BiasesKeywords;
     for (let i=0; i<biasKeywords.length; i++){
      updatedBiasKeywords.push(biasKeywords[i]);

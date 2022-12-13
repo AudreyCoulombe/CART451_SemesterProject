@@ -38,11 +38,8 @@ class Portraits {
         style: "padding-left:5px",
       }).appendTo(div);
       // reported bias
-      for (
-        let j = 0;
-        j < this.processBiasData(this.imagesData[i]).length;
-        j++
-      ) {
+      for (let j = 0; j < this.imagesData[i].Biases.length; j++) {
+      // for (let j = 0; j < this.processBiasData(this.imagesData[i]).length; j++) {
         let flagsDiv = $("<div>", {
           class: "flagTooltip",
           style: "padding-left:5px",
@@ -52,11 +49,7 @@ class Portraits {
           src: "./images/flagIcon.png",
           style: "width:15px; display: inline;",
         }).appendTo(flagsDiv);
-        let biasText = $(
-          `<span>${this.processBiasData(this.imagesData[i])[j]}</span>`
-        )
-          .attr("class", "flagTooltiptext")
-          .appendTo(flagsDiv);
+        let biasText = $(`<span>${this.imagesData[i].Biases[j]}</span>`).attr("class", "flagTooltiptext").appendTo(flagsDiv);
       }
 
       // report inputs
