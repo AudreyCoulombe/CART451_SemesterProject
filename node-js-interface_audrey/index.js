@@ -132,7 +132,7 @@ function handlePost(request, response) {
               }));
               
               // save image data in Mongo database
-              imageDataArray[0].save(); // add.then
+              imageDataArray[0].save(); 
               // add new image to array with images data from Mongo db (since data was taken once db was open, before the image was generated)
               dbImages.push(imageDataArray[0]);
             }
@@ -157,11 +157,7 @@ function getImgData(request, response) {
 async function biasReport (request, response){
   let biasedImg = request.body.img;
   let biasDescription = request.body.description;
-  // let biasDescription = [];
   let biasKeywords = [];
-
-
-  // biasDescription.push(request.body.description);
 
   for (let i=0; i<request.body.keywords.length; i++){
     biasKeywords.push(request.body.keywords[i]);
@@ -173,19 +169,7 @@ async function biasReport (request, response){
     console.log(result);
 
     let updatedBiases = result.Biases;
-    // for (let i=0; i<biasKeywords.length; i++){
       updatedBiases.push(biasDescription);
-    // }
-    // let updatedBiases;
-    // console.log(result.Biases);
-    // if (result.Biases === "undefined"){ //HOW TO KNOW IF UNDEFINED??? + HOW TO DELETE ALL BIASES IN DB?
-    //   updatedBiases = `${biasDescription}`;
-    // } else {
-    //   console.log("no set biases");
-
-    //   console.log("biases not undefined");
-    //   updatedBiases = `${result.Biases}; `.concat(`${biasDescription}`);
-    // }
     console.log(updatedBiases);
 
     let updatedBiasKeywords = result.BiasesKeywords;
@@ -198,8 +182,6 @@ async function biasReport (request, response){
       imageModel.findOne(filter).then((result)=>{
         let newImageData;
         newImageData = result;
-        // console.log("newImageData: ");
-        // console.log(newImageData);
         response.send(newImageData);
       });// findOne then end
     });
