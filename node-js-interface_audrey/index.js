@@ -86,7 +86,7 @@ function handlePost(request, response) {
 
   // ****************************************************************************
   // PUT BACKEND URL HERE (go here to renew: https://github.com/saharmor/dalle-playground) 
-  let newBackendUrl= "https://starting-married-lender-leon.trycloudflare.com/";
+  let newBackendUrl= "https://purple-danger-politics-recently.trycloudflare.com/";
   // ****************************************************************************
 
   // variable for the number of generated images

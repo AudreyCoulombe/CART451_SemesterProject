@@ -16,6 +16,5 @@ const imageDataSchema = new mongoose.Schema({
     BiasesKeywords:Array
 });
 
-//const imageDataModel = mongoose.model("Fitbit_collection", imageDataSchema, fitbit_collection);
 const imageDataModel = mongoose.model("AlgorithmicPortraits_collectionV3", imageDataSchema, "algorithmicPortraits_collectionV3");
 module.exports = imageDataModel;
